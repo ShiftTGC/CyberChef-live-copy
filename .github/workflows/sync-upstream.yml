@@ -24,17 +24,17 @@ jobs:
       - name: Add upstream remote
         run: git remote add upstream https://github.com/gchq/CyberChef.git
 
-      - name: Fetch upstream gh-pages branch # <--- UPDATED DESCRIPTION
-        run: git fetch upstream gh-pages # <--- Fetch only the gh-pages branch from upstream
+      - name: Fetch upstream gh-pages branch
+        run: git fetch upstream gh-pages
 
-      - name: Force push upstream gh-pages to forks gh-pages
+      - name: Force push upstream gh-pages to fork's gh-pages
         run: git push --force origin upstream/gh-pages:gh-pages
 
-      - name: Fetch updated origin # <--- NEW STEP: This updates local references to origin
+      - name: Fetch updated origin references
         run: git fetch origin
 
-      - name: Checkout gh-pages for cleanup # <--- This should now work correctly
-        run: git checkout gh-pages
+      - name: Checkout gh-pages for cleanup 
+        run: git checkout -B gh-pages origin/gh-pages
 
       - name: Clean up old CyberChef zip files
         run: |
