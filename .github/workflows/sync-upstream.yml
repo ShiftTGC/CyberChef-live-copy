@@ -3,8 +3,9 @@
 name: Sync Upstream CyberChef
 
 on:
-  schedule:
-    - cron: '0 0 1 * *' # Run monthly at the 1st of each month at 00:00 UTC
+  #schedule:
+   # - cron: '0 0 1 * *' # Run monthly at the 1st of each month at 00:00 UTC
+  # Things didn't quite work out how i wnanted it to, soooo, manual until I fix it.
   
   # Allow manual triggering of the workflow from the GitHub UI
   workflow_dispatch:
