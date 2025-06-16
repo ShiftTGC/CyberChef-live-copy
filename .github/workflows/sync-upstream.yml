@@ -28,9 +28,10 @@ jobs:
       - name: Fetch upstream changes
         run: git fetch upstream
 
-      - name: Merge upstream/gh-pages into local gh-pages branch # <--- UPDATED DESCRIPTION
+      - name: Merge upstream/gh-pages into local gh-pages branch
         run: |
-          git checkout gh-pages # <--- IMPORTANT: Checkout your fork's gh-pages branch
+          # Explicitly check out your fork's gh-pages branch, creating/resetting it if needed.
+          git checkout -B gh-pages origin/gh-pages
           git pull upstream gh-pages --rebase || git pull upstream gh-pages --no-edit
 
       - name: Clean up old CyberChef zip files
@@ -50,5 +51,5 @@ jobs:
           fi
         working-directory: './' 
 
-      - name: Push changes to fork's gh-pages branch # <--- UPDATED DESCRIPTION
-        run: git push origin gh-pages # <--- IMPORTANT: Push to your fork's gh-pages branch
+      - name: Push changes to fork's gh-pages branch
+        run: git push origin gh-pages
