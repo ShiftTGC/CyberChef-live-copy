@@ -27,12 +27,13 @@ jobs:
       - name: Fetch upstream gh-pages branch # <--- UPDATED DESCRIPTION
         run: git fetch upstream gh-pages # <--- Fetch only the gh-pages branch from upstream
 
-      - name: Force push upstream gh-pages to forks gh-pages 
+      - name: Force push upstream gh-pages to forks gh-pages
         run: git push --force origin upstream/gh-pages:gh-pages
-        # This command makes your fork's gh-pages branch an exact copy of upstream's.
-        # It resolves all conflicts by simply taking the upstream version.
 
-      - name: Checkout gh-pages for cleanup (after force push) # <--- NEW STEP
+      - name: Fetch updated origin # <--- NEW STEP: This updates local references to origin
+        run: git fetch origin
+
+      - name: Checkout gh-pages for cleanup # <--- This should now work correctly
         run: git checkout gh-pages
 
       - name: Clean up old CyberChef zip files
@@ -52,7 +53,7 @@ jobs:
           fi
         working-directory: './' 
 
-      - name: Commit cleanup changes and push # <--- UPDATED STEP
+      - name: Commit cleanup changes and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
